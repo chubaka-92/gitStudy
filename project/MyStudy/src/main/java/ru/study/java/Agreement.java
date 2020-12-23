@@ -2,6 +2,8 @@ package ru.study.java;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Agreement implements InfoShort{
@@ -11,8 +13,7 @@ public class Agreement implements InfoShort{
     private String client;
     private String contractor;
     private int deadLineDays = 0;
-    private int massProjLengh = 0;
-    private ConstructionProject [] massProjects = new ConstructionProject[massProjLengh];
+    private List<ConstructionProject> listProjects = new ArrayList<>();
     private LocalDate dateCreatedAgree;
     private int priceAgree = 0;
 
@@ -44,12 +45,11 @@ public class Agreement implements InfoShort{
 
     //добавление проекта под договор
     public void addProject(ConstructionProject project){
-        this.massProjLengh++;
-        this.massProjects[massProjLengh-1] = project;
+        this.listProjects.add(project);
     }
 
     //Колличество проектов под договором
-    public int countProjects(){ return massProjLengh; }
+    public int countProjects(){ return listProjects.size(); }
 
     public int getNumbAgree() {
         return numbAgree;
@@ -67,8 +67,20 @@ public class Agreement implements InfoShort{
         return deadLineDays;
     }
 
+    //получаем стоимость проекта
     public int getPriceAgree() {
+        if(listProjects.size() >= 0)
+            this.priceAgree = sumPriceStageAll(listProjects);
         return priceAgree;
+    }
+
+    //подсчет стоимости всех этапов
+    private int sumPriceStageAll(List<ConstructionProject> listProjects){
+        int sumPrice = 0;
+        for (ConstructionProject proj : listProjects){
+            sumPrice += proj.getPriceProject();
+        }
+        return sumPrice;
     }
 
     @Override

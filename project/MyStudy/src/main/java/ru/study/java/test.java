@@ -16,15 +16,18 @@ public class test {
 
 
         //этапы
-        StageProject stage1Project1 = new StageProject("Дизайн-проект","Выполнено",12,10,2020,15,11,2020);
+        StageProject stage1Project1 = new StageProject("Дизайн-проект","Выполнено",
+                                        12,10,2020,15,11,2020,50000);
         System.out.println(stage1Project1.toString());
         System.out.println("*****************");
 
-        StageProject stage2Project1 = new StageProject("Черновые работы","В работе",17,11,2020,22,12,2020);
+        StageProject stage2Project1 = new StageProject("Черновые работы","В работе",
+                                        17,11,2020,22,12,2020,85000);
         System.out.println(stage2Project1.toString());
         System.out.println("*****************");
 
-        StageProject stage3Project1 = new StageProject("Чистовые работы","Ожидает начала работ",23,12,2020,25,2,2021);
+        StageProject stage3Project1 = new StageProject("Чистовые работы","Ожидает начала работ",
+                                        23,12,2020,25,2,2021,200000);
         System.out.println(stage3Project1.toString());
 
 /*        InfoShort agr = agr1;
@@ -37,7 +40,7 @@ public class test {
         shortInfo(stage2Project1);
         shortInfo(stage3Project1);
 
-        stage1Project1.editNameStage("");
+        stage1Project1.setNameStage("");
 
         shortInfo(stage1Project1);
 

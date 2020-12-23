@@ -1,12 +1,14 @@
 package ru.study.java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ConstructionProject implements InfoShort{
 
     private String name;
     private String status;
-    private int massStageLength = 0;
-    private StageProject [] massStages = new StageProject[massStageLength];
-    private int priceAgree = 0;
+    private List<StageProject> listStages = new ArrayList<>();
+    private int priceProject = 0;
 
     public ConstructionProject(){}
 
@@ -42,8 +44,29 @@ public class ConstructionProject implements InfoShort{
 
     //Добавление Этапа в проект
     public void addStage(StageProject stage){
-        this.massStageLength++;
-        this.massStages[massStageLength-1] = stage;
+        this.listStages.add(stage);
+    }
+
+    //получаем количество этапов в проекте
+    public int getCountStage(){
+        return this.listStages.size();
+    }
+
+    //получаем стоимость проекта
+    public int getPriceProject() {
+        if(listStages.size() >= 0){
+            this.priceProject = sumPriceStageAll(listStages);}
+        return priceProject;
+    }
+
+    //подсчет стоимости всех этапов
+    private int sumPriceStageAll(List<StageProject> listStages){
+        int sumPrice = 0;
+
+        for (StageProject stage : listStages){
+            sumPrice += stage.getPriceStage();
+        }
+        return sumPrice;
     }
 
     @Override

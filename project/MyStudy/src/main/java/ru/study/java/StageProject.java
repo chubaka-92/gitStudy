@@ -7,22 +7,23 @@ import java.time.LocalDateTime;
 public class StageProject implements InfoShort{
 
     private static int nextNumbStg = 1;
-    private int numberStage;
-    private String name;
-    private String status;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private int numberStage = 0;
+    private String name = null;
+    private String status = null;
+    private LocalDate startDate = null;
+    private LocalDate endDate = null;
+    private int priceStage = 0;
 
     public StageProject (){}
 
-    public StageProject (String name, String status, int startDay,int starMonth,int starYear,
-                         int endDay,int endMonth,int endYear){
+    public StageProject (String name, String status,
+                         int startDay,int starMonth,int starYear,int endDay,int endMonth,int endYear, int priceStage){
         setNumberStage();
-        this.name = name;
-        this.status = status;
+        setNameStage(name);
+        setStatusStage(status);
+        setPriceStage(priceStage);
         setStartDate(startDay,starMonth,starYear);
         setEndDate(endDay,endMonth,endYear);
-
     }
 
     //возвращаем Номер Этапа
@@ -66,12 +67,30 @@ public class StageProject implements InfoShort{
         this.endDate = LocalDate.of(endYear,endMonth,endDay);
     }
 
+    //Изменение цены этапа
+    public void setPriceStage(int priceStage) {
+        this.priceStage = priceStage;
+    }
+
+    //Получить стоимость этапа
+    public int getPriceStage() {
+        return priceStage;
+    }
+
     //Изменяем Название Этапа
-    public void editNameStage(String newName){
+    public void setNameStage(String newName){
         if(!(newName.equals(""))){
             this.name = newName;
         } else {
             System.out.println("Название не может быть пустым");
+        }
+    }
+    //Изменяем статус
+    public void setStatusStage(String newStatus){
+        if(!(newStatus.equals(""))){
+            this.status = newStatus;
+        } else {
+            System.out.println("Статус не может быть пустым");
         }
     }
 
