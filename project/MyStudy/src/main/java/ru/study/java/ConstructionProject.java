@@ -3,22 +3,22 @@ package ru.study.java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConstructionProject implements InfoShort{
+public class ConstructionProject{
 
     private String name;
-    private String status;
+    private Status status;
     private List<StageProject> listStages = new ArrayList<>();
     private int priceProject = 0;
 
     public ConstructionProject(){}
 
-    public ConstructionProject(String name, String status){
-        this.name = name;
-        this.status = status;
+    public ConstructionProject(String name, Status status){
+        editNameProject(name);
+        editStatusProject(status);
     }
 
     public String toString(){
-        return "Название проекта: " + name + "\nСтатус: " + status;
+        return "Название проекта: " + name + "\nСтатус: " + status.toString();
     }
 
     public void editNameProject(String newName) {
@@ -29,7 +29,7 @@ public class ConstructionProject implements InfoShort{
         }
     }
 
-    public void editStatusProject(String newStatus) {
+    public void editStatusProject(Status newStatus) {
         if(newStatus != null){
             this.status = newStatus;
         } else {
@@ -39,8 +39,7 @@ public class ConstructionProject implements InfoShort{
 
     public String getName() { return name; }
 
-    public String getStatus() { return status; }
-
+    public String getStatus() { return status.toString(); }
 
     //Добавление Этапа в проект
     public void addStage(StageProject stage){
@@ -67,10 +66,5 @@ public class ConstructionProject implements InfoShort{
             sumPrice += stage.getPriceStage();
         }
         return sumPrice;
-    }
-
-    @Override
-    public void infoShort() {
-        System.out.println("Название проекта: " + name + ". Статус: " + status);
     }
 }

@@ -1,24 +1,35 @@
 package ru.study.java;
 
-import java.text.SimpleDateFormat;
+import ru.study.java.Validate.ValidEmptyValue;
+import ru.study.java.Validate.ValidNegativeValue;
+import ru.study.java.Validate.ValidOldValue;
+import ru.study.java.Validate.ValidationException;
+
+import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-public class StageProject implements InfoShort{
+public class StageProject{
 
-    private static int nextNumbStg = 1;
     private int numberStage = 0;
     private String name = null;
-    private String status = null;
+    private Status status = null;
     private LocalDate startDate = null;
     private LocalDate endDate = null;
     private int priceStage = 0;
 
     public StageProject (){}
 
-    public StageProject (String name, String status,
-                         int startDay,int starMonth,int starYear,int endDay,int endMonth,int endYear, int priceStage){
-        setNumberStage();
+    public StageProject (int numbStage, String name, Status status, int priceStage) throws ValidationException {
+        setNumberStage(numbStage);
+        setNameStage(name);
+        setStatusStage(status);
+        setPriceStage(priceStage);
+    }
+
+    public StageProject (int numbStage, String name, Status status,
+                         int startDay,int starMonth,int starYear,int endDay,int endMonth,int endYear,
+                         int priceStage) throws DateTimeException, ValidationException {
+        setNumberStage(numbStage);
         setNameStage(name);
         setStatusStage(status);
         setPriceStage(priceStage);
@@ -37,33 +48,27 @@ public class StageProject implements InfoShort{
     }
 
     //возвращаем Статус Этапа
-    public String getStatus() {
-        return status;
+    public String getStatus() throws NullPointerException{
+        return status.toString();
     }
 
     //возвращаем Дату начала Этапа
-    public LocalDate getStartDate() {
-        return startDate;
+    public String getStartDate() throws NullPointerException{
+        return startDate.toString();
     }
 
     //возвращаем Дату завершения Этапа
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    //установка номера Этапа
-    private void setNumberStage(){
-        this.numberStage = nextNumbStg;
-        this.nextNumbStg++;
+    public String getEndDate() throws NullPointerException{
+        return endDate.toString();
     }
 
     //установка Даты начала Этапа
-    public void setStartDate(int startDay,int starMonth,int starYear){
+    public void setStartDate(int startDay,int starMonth,int starYear) throws DateTimeException{
         this.startDate = LocalDate.of(starYear,starMonth,startDay);
     }
 
     //установка Даты завершения Этапа
-    public void setEndDate(int endDay,int endMonth,int endYear){
+    public void setEndDate(int endDay,int endMonth,int endYear) throws DateTimeException{
         this.endDate = LocalDate.of(endYear,endMonth,endDay);
     }
 
@@ -78,31 +83,39 @@ public class StageProject implements InfoShort{
     }
 
     //Изменяем Название Этапа
-    public void setNameStage(String newName){
+    public void setNameStage(String newName) throws ValidEmptyValue {
         if(!(newName.equals(""))){
             this.name = newName;
         } else {
-            System.out.println("Название не может быть пустым");
+            throw new ValidEmptyValue("Название не может быть пустым");
         }
     }
+
     //Изменяем статус
-    public void setStatusStage(String newStatus){
-        if(!(newStatus.equals(""))){
+    public void setStatusStage(Status newStatus) throws ValidEmptyValue{
+        if(newStatus != null){
             this.status = newStatus;
         } else {
-            System.out.println("Статус не может быть пустым");
+            throw new ValidEmptyValue("Статус не может быть пустым");
+        }
+    }
+
+    //установка номера Этапа
+    public void setNumberStage(int numberStage) throws ValidationException {
+        int oldNumbStage = this.numberStage;
+        if (oldNumbStage == numberStage) {
+            throw new ValidOldValue("Номер этапа: " + numberStage + " является текущим номером этапа");
+        }
+        if (numberStage < 0) {
+            throw new ValidNegativeValue("Номер этапа не может быть отрицательным");
+        } else {
+            this.numberStage = numberStage;
         }
     }
 
     public String toString(){
-        return "Этап: №" + numberStage + ". " + name + "\nСтатус этапа: " + status + "\nДата начала: " + startDate +
+        return "Этап: №" + numberStage + ". " + name + "\nСтатус этапа: " + status.toString() + "\nДата начала: " + startDate +
                 "\nДата завершения: " + endDate;
-    }
-
-
-    @Override
-    public void infoShort() {
-        System.out.println("Этап: №" + numberStage + ". " + name + ". Статус: " + status);
     }
 }
 

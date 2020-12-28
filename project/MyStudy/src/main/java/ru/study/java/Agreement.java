@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Agreement implements InfoShort{
+public class Agreement{
     private int numbAgree;
-    private String nameAgree;
     private int nextNumberAgr= 1;
     private String client;
     private String contractor;
@@ -17,19 +16,14 @@ public class Agreement implements InfoShort{
     private LocalDate dateCreatedAgree;
     private int priceAgree = 0;
 
-    {
-        this.dateCreatedAgree = LocalDate.now();
-    }
+    public Agreement(){}
 
-    public Agreement(){
-    }
-
-    public Agreement(String client, String contractor, int deadLineDays){
-
+    public Agreement(String client, String contractor, int deadLineDays, int createdDay,int createdMonth,int createdYear){
         this.client = client;
         this.contractor = contractor;
         this.deadLineDays = deadLineDays;
         setNumberAgree();
+        setCreatedDate(createdDay,createdMonth,createdYear);
     }
 
     private void setNumberAgree(){
@@ -37,15 +31,18 @@ public class Agreement implements InfoShort{
         nextNumberAgr++;
     }
 
-    public String toString(){
-        return "№ договора: " + numbAgree + "\nКлиент: " + client +
-                "\nИсполнитель: " + contractor + "\nСроки договора(в днях): " + deadLineDays +
-                "\nДата создания: " + dateCreatedAgree;
+    private void setCreatedDate(int createdDay, int createdMonth, int createdYear) {
+        this.dateCreatedAgree = LocalDate.of(createdYear,createdMonth,createdDay);
     }
 
     //добавление проекта под договор
     public void addProject(ConstructionProject project){
         this.listProjects.add(project);
+    }
+    public String toString(){
+        return "№ договора: " + numbAgree + "\nКлиент: " + client +
+                "\nИсполнитель: " + contractor + "\nСроки договора(в днях): " + deadLineDays +
+                "\nДата создания: " + dateCreatedAgree;
     }
 
     //Колличество проектов под договором
@@ -67,9 +64,11 @@ public class Agreement implements InfoShort{
         return deadLineDays;
     }
 
+    public String getDateCreatedAgree(){ return this.dateCreatedAgree.toString(); }
+
     //получаем стоимость проекта
     public int getPriceAgree() {
-        if(listProjects.size() >= 0)
+        if(listProjects.size() > 0)
             this.priceAgree = sumPriceStageAll(listProjects);
         return priceAgree;
     }
@@ -82,12 +81,5 @@ public class Agreement implements InfoShort{
         }
         return sumPrice;
     }
-
-    @Override
-    public void infoShort() {
-        System.out.println("№ договора: " + numbAgree + ". Сроки договора(в днях): " + deadLineDays);
-    }
-
-
 }
 
