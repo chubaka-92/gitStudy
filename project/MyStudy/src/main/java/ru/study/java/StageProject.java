@@ -17,15 +17,6 @@ public class StageProject{
     private LocalDate endDate = null;
     private int priceStage = 0;
 
-    public StageProject (){}
-
-    public StageProject (int numbStage, String name, Status status, int priceStage) throws ValidationException {
-        setNumberStage(numbStage);
-        setNameStage(name);
-        setStatusStage(status);
-        setPriceStage(priceStage);
-    }
-
     public StageProject (int numbStage, String name, Status status,
                          int startDay,int starMonth,int starYear,int endDay,int endMonth,int endYear,
                          int priceStage) throws DateTimeException, ValidationException {

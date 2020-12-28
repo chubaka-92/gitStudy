@@ -60,18 +60,6 @@ public class StageProjectTest {
     }
 
     /**
-     * Проверка метода getStartDate
-     * вызов NullPointerExeption при попытке вернуть не заданную дату старта этапа
-     */
-    @Test
-    public void getStartDateNullPointerExeptionTest(){
-        StageProject stage = new StageProject(1,"Дизайн-проект", Status.COMPLETED,50000);
-
-        NullPointerException valid = assertThrows(NullPointerException.class, () -> { stage.getStartDate(); });
-        assertNotNull(valid.getMessage());
-    }
-
-    /**
      * Проверка метода getEndDate
      * Возвращает дату окончания этапа
      */
@@ -81,18 +69,6 @@ public class StageProjectTest {
                 12,10,2020,15,11,2020,50000);
 
         assertEquals("2020-11-15",stage.getEndDate());
-    }
-
-    /**
-     * Проверка метода getEndDate
-     * вызов NullPointerExeption при попытке вернуть не заданную дату окончания этапа
-     */
-    @Test
-    public void getEndDateNullPointerExeptionTest(){
-        StageProject stage = new StageProject(1,"Дизайн-проект", Status.COMPLETED, 50000);
-
-        NullPointerException valid = assertThrows(NullPointerException.class, () ->  stage.getEndDate() );
-        assertNotNull(valid.getMessage());
     }
 
     /**
