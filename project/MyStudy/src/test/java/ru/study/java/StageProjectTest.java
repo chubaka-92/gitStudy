@@ -1,3 +1,5 @@
+package ru.study.java;
+
 import org.junit.Test;
 import ru.study.java.*;
 import ru.study.java.Validate.ValidEmptyValue;
@@ -101,7 +103,7 @@ public class StageProjectTest {
      * Задаем Пустое наименование этапа
      */
     @Test
-    public void setEmptyNameStageExeptionTest()  throws ValidEmptyValue {
+    public void setEmptyNameStageExeptionTest(){
         StageProject stage = new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                     13,10,2020,12,11,2020,50000);
 

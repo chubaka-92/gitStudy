@@ -12,7 +12,7 @@ public class ConstructionProject{
     private List<StageProject> listStages = new ArrayList<>();
     private long priceProject = 0;
 
-    public ConstructionProject(String name, Status status)  throws ValidEmptyValue {
+    public ConstructionProject(String name, Status status){
         editNameProject(name);
         editStatusProject(status);
     }
@@ -22,7 +22,7 @@ public class ConstructionProject{
     }
 
     //Изменение имени проекта
-    public void editNameProject(String newName) throws ValidEmptyValue {
+    public void editNameProject(String newName){
         if(!(newName.equals(""))){
             this.name = newName;
         } else {
@@ -31,7 +31,7 @@ public class ConstructionProject{
     }
 
     //Изменение статуса проекта
-    public void editStatusProject(Status newStatus) throws ValidEmptyValue {
+    public void editStatusProject(Status newStatus) {
         if(newStatus != null){
             this.status = newStatus;
         } else {

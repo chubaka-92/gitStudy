@@ -20,7 +20,7 @@ public class Agreement{
     private int priceAgree = 0;
 
     public Agreement(String client, String contractor, int deadLineDays,
-                     int createdDay,int createdMonth,int createdYear) throws DateTimeException, ValidationException {
+                     int createdDay,int createdMonth,int createdYear) throws DateTimeException{
         this.client = client;
         this.contractor = contractor;
         setDeadLineDays(deadLineDays);
@@ -35,7 +35,7 @@ public class Agreement{
     }
 
     //Установка Колличества запланированных дней на договор
-    public void setDeadLineDays(int deadLineDays) throws ValidNegativeValue{
+    public void setDeadLineDays(int deadLineDays){
         if (deadLineDays < 0) {
             throw new ValidNegativeValue("Колличество запланированных дней не может быть отрицательным");
         } else {

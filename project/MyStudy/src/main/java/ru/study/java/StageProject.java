@@ -19,7 +19,7 @@ public class StageProject{
 
     public StageProject (int numbStage, String name, Status status,
                          int startDay,int starMonth,int starYear,int endDay,int endMonth,int endYear,
-                         int priceStage) throws DateTimeException, ValidationException {
+                         int priceStage) throws DateTimeException {
         setNumberStage(numbStage);
         setNameStage(name);
         setStatusStage(status);
@@ -39,17 +39,17 @@ public class StageProject{
     }
 
     //возвращаем Статус Этапа
-    public String getStatus() throws NullPointerException{
+    public String getStatus(){
         return status.toString();
     }
 
     //возвращаем Дату начала Этапа
-    public String getStartDate() throws NullPointerException{
+    public String getStartDate(){
         return startDate.toString();
     }
 
     //возвращаем Дату завершения Этапа
-    public String getEndDate() throws NullPointerException{
+    public String getEndDate(){
         return endDate.toString();
     }
 
@@ -74,7 +74,7 @@ public class StageProject{
     }
 
     //Изменяем Название Этапа
-    public void setNameStage(String newName) throws ValidEmptyValue {
+    public void setNameStage(String newName){
         if(!(newName.equals(""))){
             this.name = newName;
         } else {
@@ -83,7 +83,7 @@ public class StageProject{
     }
 
     //Изменяем статус
-    public void setStatusStage(Status newStatus) throws ValidEmptyValue{
+    public void setStatusStage(Status newStatus){
         if(newStatus != null){
             this.status = newStatus;
         } else {
@@ -92,7 +92,7 @@ public class StageProject{
     }
 
     //установка номера Этапа
-    public void setNumberStage(int numberStage) throws ValidationException {
+    public void setNumberStage(int numberStage){
         int oldNumbStage = this.numberStage;
         if (oldNumbStage == numberStage) {
             throw new ValidOldValue("Номер этапа: " + numberStage + " является текущим номером этапа");

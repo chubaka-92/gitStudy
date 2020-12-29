@@ -1,3 +1,5 @@
+package ru.study.java;
+
 import org.junit.Assert;
 import org.junit.Test;
 import ru.study.java.ConstructionProject;
@@ -107,7 +109,7 @@ public class ConstructionProjectTest {
      * Задаем Пустое наименование проекта
      */
     @Test
-    public void editNameProjectExeptionTest()  throws ValidEmptyValue {
+    public void editNameProjectExeptionTest(){
         ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
         ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> proj.editNameProject(""));
@@ -132,7 +134,7 @@ public class ConstructionProjectTest {
      * Задаем пустой статус проекта
      */
     @Test
-    public void editStatusProjectExeptionTest()  throws ValidEmptyValue {
+    public void editStatusProjectExeptionTest() {
         ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
         ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> proj.editStatusProject(null));
