@@ -197,8 +197,13 @@ public class StageProjectTest {
         StageProject stage = new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                 13,10,2020,15,11,2020,50000);
 
+        //не корректный день
         DateTimeException valid = assertThrows(DateTimeException.class, () ->
                                             { stage.setStartDate(45,9,2020); });
+        assertNotNull(valid.getMessage());
+
+        //не корректный месяц
+        valid = assertThrows(DateTimeException.class, () -> { stage.setStartDate(15,16,2020); });
         assertNotNull(valid.getMessage());
     }
 

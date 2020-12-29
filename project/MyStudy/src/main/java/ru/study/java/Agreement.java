@@ -1,14 +1,17 @@
 package ru.study.java;
 
 
+import ru.study.java.Validate.ValidNegativeValue;
+import ru.study.java.Validate.ValidationException;
+
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Agreement{
     private int numbAgree;
-    private int nextNumberAgr= 1;
+    private static int nextNumberAgr= 1;
     private String client;
     private String contractor;
     private int deadLineDays = 0;
@@ -16,22 +19,32 @@ public class Agreement{
     private LocalDate dateCreatedAgree;
     private int priceAgree = 0;
 
-    public Agreement(){}
-
-    public Agreement(String client, String contractor, int deadLineDays, int createdDay,int createdMonth,int createdYear){
+    public Agreement(String client, String contractor, int deadLineDays,
+                     int createdDay,int createdMonth,int createdYear) throws DateTimeException, ValidationException {
         this.client = client;
         this.contractor = contractor;
-        this.deadLineDays = deadLineDays;
+        setDeadLineDays(deadLineDays);
         setNumberAgree();
         setCreatedDate(createdDay,createdMonth,createdYear);
     }
 
+    //Установка номера договора
     private void setNumberAgree(){
         this.numbAgree = nextNumberAgr;
         nextNumberAgr++;
     }
 
-    private void setCreatedDate(int createdDay, int createdMonth, int createdYear) {
+    //Установка Колличества запланированных дней на договор
+    public void setDeadLineDays(int deadLineDays) throws ValidNegativeValue{
+        if (deadLineDays < 0) {
+            throw new ValidNegativeValue("Колличество запланированных дней не может быть отрицательным");
+        } else {
+            this.deadLineDays = deadLineDays;
+        }
+    }
+
+    //Установка даты создания договора
+    private void setCreatedDate(int createdDay, int createdMonth, int createdYear) throws DateTimeException {
         this.dateCreatedAgree = LocalDate.of(createdYear,createdMonth,createdDay);
     }
 
@@ -39,6 +52,7 @@ public class Agreement{
     public void addProject(ConstructionProject project){
         this.listProjects.add(project);
     }
+
     public String toString(){
         return "№ договора: " + numbAgree + "\nКлиент: " + client +
                 "\nИсполнитель: " + contractor + "\nСроки договора(в днях): " + deadLineDays +
@@ -80,6 +94,10 @@ public class Agreement{
             sumPrice += proj.getPriceProject();
         }
         return sumPrice;
+    }
+
+    public boolean isEmptyListProjects() {
+        return listProjects.size() == 0;
     }
 }
 

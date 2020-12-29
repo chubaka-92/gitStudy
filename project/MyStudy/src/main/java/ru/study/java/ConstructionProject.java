@@ -1,5 +1,7 @@
 package ru.study.java;
 
+import ru.study.java.Validate.ValidEmptyValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +10,9 @@ public class ConstructionProject{
     private String name;
     private Status status;
     private List<StageProject> listStages = new ArrayList<>();
-    private int priceProject = 0;
+    private long priceProject = 0;
 
-    public ConstructionProject(){}
-
-    public ConstructionProject(String name, Status status){
+    public ConstructionProject(String name, Status status)  throws ValidEmptyValue {
         editNameProject(name);
         editStatusProject(status);
     }
@@ -21,30 +21,32 @@ public class ConstructionProject{
         return "Название проекта: " + name + "\nСтатус: " + status.toString();
     }
 
-    public void editNameProject(String newName) {
+    //Изменение имени проекта
+    public void editNameProject(String newName) throws ValidEmptyValue {
         if(!(newName.equals(""))){
             this.name = newName;
         } else {
-            System.out.println("Название проекта не может быть пустым");
+            throw new ValidEmptyValue("Название проекта не может быть пустым");
         }
     }
 
-    public void editStatusProject(Status newStatus) {
+    //Изменение статуса проекта
+    public void editStatusProject(Status newStatus) throws ValidEmptyValue {
         if(newStatus != null){
             this.status = newStatus;
         } else {
-            System.out.println("Статус проекта не может быть пустым");
+            throw new ValidEmptyValue("Статус проекта не может быть пустым");
         }
     }
-
-    public String getName() { return name; }
-
-    public String getStatus() { return status.toString(); }
 
     //Добавление Этапа в проект
     public void addStage(StageProject stage){
         this.listStages.add(stage);
     }
+
+    public String getName() { return name; }
+
+    public String getStatus() { return status.toString(); }
 
     //получаем количество этапов в проекте
     public int getCountStage(){
@@ -52,7 +54,7 @@ public class ConstructionProject{
     }
 
     //получаем стоимость проекта
-    public int getPriceProject() {
+    public long getPriceProject() {
         if(listStages.size() >= 0){
             this.priceProject = sumPriceStageAll(listStages);}
         return priceProject;
@@ -67,4 +69,9 @@ public class ConstructionProject{
         }
         return sumPrice;
     }
+
+    public boolean isEmptyListProjects() {
+        return listStages.size() == 0;
+    }
+
 }

@@ -15,7 +15,7 @@ public class StageProject{
     private Status status = null;
     private LocalDate startDate = null;
     private LocalDate endDate = null;
-    private int priceStage = 0;
+    private long priceStage = 0;
 
     public StageProject (int numbStage, String name, Status status,
                          int startDay,int starMonth,int starYear,int endDay,int endMonth,int endYear,
@@ -64,12 +64,12 @@ public class StageProject{
     }
 
     //Изменение цены этапа
-    public void setPriceStage(int priceStage) {
+    public void setPriceStage(long priceStage) {
         this.priceStage = priceStage;
     }
 
     //Получить стоимость этапа
-    public int getPriceStage() {
+    public long getPriceStage() {
         return priceStage;
     }
 

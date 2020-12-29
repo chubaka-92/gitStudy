@@ -3,57 +3,153 @@ import org.junit.Test;
 import ru.study.java.ConstructionProject;
 import ru.study.java.StageProject;
 import ru.study.java.Status;
+import ru.study.java.Validate.ValidEmptyValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class ConstructionProjectTest {
+    /**
+     * Проверка метода getName
+     * Возвращает наименование проекта
+     */
     @Test
-    public void constructionProjectTest(){
+    public void getNameTest(){
         ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
-        //Проверка названия созданного этапа
-        String nameProj = proj.getName();
-        Assert.assertEquals("Ремонт квартиры",nameProj);
+        Assert.assertEquals("Ремонт квартиры", proj.getName());
+    }
 
-        //Проверка статуса созданного этапа
-        String statusProj = proj.getStatus();
-        Assert.assertEquals("В работе",statusProj);
+    /**
+     * Проверка метода getStatus
+     * Возвращает статус проекта
+     */
+    @Test
+    public void getStatusTest(){
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
-        //Проверка стоимости этапа
-        int price = proj.getPriceProject();
-        Assert.assertEquals(0,price);
+        assertEquals("В работе", proj.getStatus());
 
-        //проверка количества этапов в проете
-        int countStage = proj.getCountStage();
-        Assert.assertEquals(0,countStage);
+    }
 
-        //Добаление этапа под договор для повторной проверки количичества этапов и стоимости проекта
+    /**
+     * Проверка метода getPriceProject
+     * Возвращает стоимость проекта без этапов
+     */
+    @Test
+    public void getPriceProjectNullStageTest(){
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
+
+        assertEquals(0,proj.getPriceProject());
+    }
+
+    /**
+     * Проверка метода getCountStage
+     * Возвращает количество этапов проекта(у которого нет этапов)
+     */
+    @Test
+    public void getNullCountStageTest(){
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
+
+        assertEquals(0,proj.getCountStage());
+    }
+
+    /**
+     * Проверка метода getPriceProject
+     * Возвращает стоимость проекта
+     */
+    @Test
+    public void getPriceProjectTest(){
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
+
+        //Добаление этапа под договор для повторной проверки стоимости проекта
         proj.addStage(new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                 12,10,2020,15,11,2020,50000));
-
-        price = proj.getPriceProject();
-        Assert.assertEquals(50000,price);
-
-        countStage = proj.getCountStage();
-        Assert.assertEquals(1,countStage);
 
         proj.addStage(new StageProject(2, "Черновые работы", Status.COMPLETED,
                 16,11,2020,23,12,2020,150000));
 
-        price = proj.getPriceProject();
-        Assert.assertEquals(200000,price);
+        assertEquals(200000,proj.getPriceProject());
+    }
 
-        countStage = proj.getCountStage();
-        Assert.assertEquals(2,countStage);
+    /**
+     * Проверка метода getCountStage
+     * Возвращает количество этапов проекта
+     */
+    @Test
+    public void getCountStageTest(){
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
-        //Проверка изменение названия этапа
-        proj.editNameProject("Ремонт квартиры");
-        nameProj = proj.getName();
-        Assert.assertEquals("Ремонт квартиры",nameProj);
+        //Добаление этапа под договор для повторной проверки количичества этапов
+        proj.addStage(new StageProject(1,"Дизайн-проект", Status.COMPLETED,
+                12,10,2020,15,11,2020,50000));
+
+        proj.addStage(new StageProject(2, "Черновые работы", Status.COMPLETED,
+                16,11,2020,23,12,2020,150000));
+
+        assertEquals(2,proj.getCountStage());
+    }
+
+    /**
+     * Проверка метода editNameProject
+     * Задаем наименование проекта
+     */
+    @Test
+    public void editNameProjectTest() {
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
+
+        proj.editNameProject("Ремонт ванной");
+        Assert.assertEquals("Ремонт ванной", proj.getName());
+    }
+
+    /**
+     * Проверка метода editNameProject
+     * Задаем Пустое наименование проекта
+     */
+    @Test
+    public void editNameProjectExeptionTest()  throws ValidEmptyValue {
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
+
+        ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> proj.editNameProject(""));
+        assertEquals("Название проекта не может быть пустым",valid.getMessage());
+    }
+
+    /**
+     * Проверка метода editStatusProject
+     * Задаем статус проекта
+     */
+    @Test
+    public void editStatusProjectTest() {
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
         //Проверка изменение статуса этапа
         proj.editStatusProject(Status.SUSPENDED);
-        statusProj = proj.getStatus();
-        Assert.assertEquals("Приостановлен",statusProj);
+        Assert.assertEquals("Приостановлен",proj.getStatus());
+    }
 
+    /**
+     * Проверка метода editStatusProject
+     * Задаем пустой статус проекта
+     */
+    @Test
+    public void editStatusProjectExeptionTest()  throws ValidEmptyValue {
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
+
+        ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> proj.editStatusProject(null));
+        assertEquals("Статус проекта не может быть пустым",valid.getMessage());
+    }
+
+    /**
+     * Проверка метода addStage
+     * добавляем этап под проект
+     */
+    @Test
+    public void addStageTest(){
+        ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
+
+        proj.addStage(new StageProject(1,"Дизайн-проект", Status.COMPLETED,
+                12,10,2020,15,11,2020,50000));
+        assertEquals(false,proj.isEmptyListProjects());
     }
 }
 

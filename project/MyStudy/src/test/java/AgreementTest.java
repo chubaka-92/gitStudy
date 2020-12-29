@@ -6,30 +6,105 @@ import ru.study.java.StageProject;
 import ru.study.java.Status;
 
 public class AgreementTest {
+    /**
+     * Проверка метода getNumbAgree
+     * Возвращает номер договора
+     */
     @Test
-    public void agreementTest() {
+    public void getNumbAgreeTest(){
         Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
 
-        //номер договора
-        int numbAgree = agr.getNumbAgree();
-        Assert.assertEquals(1,numbAgree);
+        Assert.assertEquals(9, agr.getNumbAgree());
+    }
 
-        //срок договора в днях
-        int dedlineDays = agr.getDeadLineDays();
-        Assert.assertEquals(120,dedlineDays);
+    /**
+     * Проверка метода getDeadLineDays
+     * Возвращает Колличество запланированных дней договора
+     */
+    @Test
+    public void getDeadLineDaysTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
 
-        //клиент
-        String client = agr.getClient();
-        Assert.assertEquals("ОАО НОРКА",client);
+        Assert.assertEquals(120, agr.getDeadLineDays());
+    }
 
-        //Исполнитель
-        String contractor = agr.getContractor();
-        Assert.assertEquals("ИП Хозяин",contractor);
+    /**
+     * Проверка метода getClient
+     * Возвращает клиента договора
+     */
+    @Test
+    public void getClientTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
 
-        //дата создания договора
-        String createdDateArgee = agr.getDateCreatedAgree();
-        Assert.assertEquals("2020-08-09",createdDateArgee);
+        Assert.assertEquals("ОАО НОРКА", agr.getClient());
+    }
 
+    /**
+     * Проверка метода getContractor
+     * Возвращает исполнителя договора
+     */
+    @Test
+    public void getContractorTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        Assert.assertEquals("ИП Хозяин", agr.getContractor());
+    }
+
+    /**
+     * Проверка метода getDateCreatedAgree
+     * Возвращает дату создания договора
+     */
+    @Test
+    public void getDateCreatedAgreeTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        Assert.assertEquals("2020-08-09", agr.getDateCreatedAgree());
+    }
+
+    /**
+     * Проверка метода countProjects
+     * Возвращает количество проектов под договором
+     */
+    @Test
+    public void nullCountProjectsTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        Assert.assertEquals(0,agr.countProjects());
+    }
+
+    /**
+     * Проверка метода getPriceAgree
+     * Возвращает стоимость договора (без проектов)
+     */
+    @Test
+    public void getNullPriceAgreeTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        Assert.assertEquals(0,agr.getPriceAgree());
+    }
+
+    /**
+     * Проверка метода countProjects
+     * Возвращает количество проектов под договором
+     */
+    @Test
+    public void countProjectsTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        //добавляем проекты под договор для подсчета проектов
+        agr.addProject(new ConstructionProject("Ремонт квартиры",Status.IN_PROGRESS));
+        agr.addProject(new ConstructionProject("Ремонт туалета",Status.PENDING_APPROVAL));
+
+        Assert.assertEquals(2,agr.countProjects());
+    }
+
+    /**
+     * Проверка метода getPriceAgree
+     * Возвращает стоимость договора
+     */
+    @Test
+    public void getPriceAgreeTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
 
         //добавляем проекты под договор для подсчета проектов
         ConstructionProject proj1 = new ConstructionProject("Ремонт квартиры",Status.IN_PROGRESS);
@@ -37,12 +112,7 @@ public class AgreementTest {
 
         agr.addProject(proj1);
         agr.addProject(proj2);
-        //Количество проектов под договором
-        int countProject = agr.countProjects();
-        Assert.assertEquals(2,countProject);
 
-
-        //добавляем этапы в проекты для расчеты стоимости договора
         proj1.addStage(new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                 12,10,2020,15,11,2020,50000));
         proj1.addStage( new StageProject(2, "Черновые работы",Status.IN_PROGRESS,
@@ -50,9 +120,18 @@ public class AgreementTest {
         proj2.addStage(new StageProject(1, "Чистовые работы",Status.PENDING_START_WORK,
                 23,12,2020,25,2,2021,200000));
 
-        //проверяем сумму договора
-        int priceAgree = agr.getPriceAgree();
-        Assert.assertEquals(335000,priceAgree);
+        Assert.assertEquals(335000,agr.getPriceAgree());
+    }
 
+    /**
+     * Проверка метода addProject
+     * добавляем новый проект под договором
+     */
+    @Test
+    public void addProjectTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        agr.addProject(new ConstructionProject("Ремонт квартиры",Status.IN_PROGRESS));
+        Assert.assertEquals(false,agr.isEmptyListProjects());
     }
 }
