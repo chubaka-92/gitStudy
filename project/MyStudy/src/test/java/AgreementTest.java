@@ -4,6 +4,11 @@ import ru.study.java.Agreement;
 import ru.study.java.ConstructionProject;
 import ru.study.java.StageProject;
 import ru.study.java.Status;
+import ru.study.java.Validate.ValidEmptyValue;
+import ru.study.java.Validate.ValidNegativeValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class AgreementTest {
     /**
@@ -133,5 +138,29 @@ public class AgreementTest {
 
         agr.addProject(new ConstructionProject("Ремонт квартиры",Status.IN_PROGRESS));
         Assert.assertEquals(false,agr.isEmptyListProjects());
+    }
+
+    /**
+     * Проверка метода getDeadLineDays
+     * Меняем Колличество запланированных дней договора на отрицательное значение
+     */
+    @Test
+    public void setDeadLineDaysExeptionTest() throws ValidNegativeValue {
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        ValidNegativeValue valid = assertThrows(ValidNegativeValue.class, () -> agr.setDeadLineDays(-2));
+        assertEquals("Колличество запланированных дней не может быть отрицательным",valid.getMessage());
+    }
+
+    /**
+     * Проверка метода getDeadLineDays
+     * Меняем Колличество запланированных дней договора
+     */
+    @Test
+    public void setDeadLineDaysTest(){
+        Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
+
+        agr.setDeadLineDays(325);
+        assertEquals(325, agr.getDeadLineDays());
     }
 }
