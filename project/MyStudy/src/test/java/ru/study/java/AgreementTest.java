@@ -2,12 +2,7 @@ package ru.study.java;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ru.study.java.Agreement;
-import ru.study.java.ConstructionProject;
-import ru.study.java.StageProject;
-import ru.study.java.Status;
-import ru.study.java.Validate.ValidEmptyValue;
-import ru.study.java.Validate.ValidNegativeValue;
+import ru.study.java.validation.ValidNegativeValueExeption;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -21,7 +16,7 @@ public class AgreementTest {
     public void getNumbAgreeTest(){
         Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
 
-        Assert.assertEquals(9, agr.getNumbAgree());
+        Assert.assertEquals(10, agr.getNumbAgree());
     }
 
     /**
@@ -117,15 +112,15 @@ public class AgreementTest {
         ConstructionProject proj1 = new ConstructionProject("Ремонт квартиры",Status.IN_PROGRESS);
         ConstructionProject proj2 = new ConstructionProject("Ремонт туалета",Status.PENDING_APPROVAL);
 
-        agr.addProject(proj1);
-        agr.addProject(proj2);
-
         proj1.addStage(new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                 12,10,2020,15,11,2020,50000));
         proj1.addStage( new StageProject(2, "Черновые работы",Status.IN_PROGRESS,
                 17,11,2020,22,12,2020,85000));
         proj2.addStage(new StageProject(1, "Чистовые работы",Status.PENDING_START_WORK,
                 23,12,2020,25,2,2021,200000));
+
+        agr.addProject(proj1);
+        agr.addProject(proj2);
 
         Assert.assertEquals(335000,agr.getPriceAgree());
     }
@@ -147,10 +142,10 @@ public class AgreementTest {
      * Меняем Колличество запланированных дней договора на отрицательное значение
      */
     @Test
-    public void setDeadLineDaysExeptionTest() throws ValidNegativeValue {
+    public void setDeadLineDaysExeptionTest() {
         Agreement agr = new Agreement("ОАО НОРКА","ИП Хозяин",120,9,8,2020);
 
-        ValidNegativeValue valid = assertThrows(ValidNegativeValue.class, () -> agr.setDeadLineDays(-2));
+        ValidNegativeValueExeption valid = assertThrows(ValidNegativeValueExeption.class, () -> agr.setDeadLineDays(-2));
         assertEquals("Колличество запланированных дней не может быть отрицательным",valid.getMessage());
     }
 

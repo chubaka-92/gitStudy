@@ -1,6 +1,6 @@
 package ru.study.java;
 
-import ru.study.java.Validate.ValidEmptyValue;
+import ru.study.java.validation.ValidEmptyValueExeption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ public class ConstructionProject{
         editStatusProject(status);
     }
 
+    @Override
     public String toString(){
         return "Название проекта: " + name + "\nСтатус: " + status.toString();
     }
@@ -26,7 +27,7 @@ public class ConstructionProject{
         if(!(newName.equals(""))){
             this.name = newName;
         } else {
-            throw new ValidEmptyValue("Название проекта не может быть пустым");
+            throw new ValidEmptyValueExeption("Название проекта не может быть пустым");
         }
     }
 
@@ -35,13 +36,14 @@ public class ConstructionProject{
         if(newStatus != null){
             this.status = newStatus;
         } else {
-            throw new ValidEmptyValue("Статус проекта не может быть пустым");
+            throw new ValidEmptyValueExeption("Статус проекта не может быть пустым");
         }
     }
 
     //Добавление Этапа в проект
     public void addStage(StageProject stage){
         this.listStages.add(stage);
+        this.priceProject = sumPriceStageAll(listStages);
     }
 
     public String getName() { return name; }
@@ -55,8 +57,6 @@ public class ConstructionProject{
 
     //получаем стоимость проекта
     public long getPriceProject() {
-        if(listStages.size() >= 0){
-            this.priceProject = sumPriceStageAll(listStages);}
         return priceProject;
     }
 

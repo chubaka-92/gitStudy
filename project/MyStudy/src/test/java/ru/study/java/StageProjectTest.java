@@ -1,10 +1,9 @@
 package ru.study.java;
 
 import org.junit.Test;
-import ru.study.java.*;
-import ru.study.java.Validate.ValidEmptyValue;
-import ru.study.java.Validate.ValidNegativeValue;
-import ru.study.java.Validate.ValidOldValue;
+import ru.study.java.validation.ValidEmptyValueExeption;
+import ru.study.java.validation.ValidNegativeValueExeption;
+import ru.study.java.validation.ValidOldValueExeption;
 
 import java.time.DateTimeException;
 
@@ -107,7 +106,7 @@ public class StageProjectTest {
         StageProject stage = new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                     13,10,2020,12,11,2020,50000);
 
-        ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> stage.setNameStage(""));
+        ValidEmptyValueExeption valid = assertThrows(ValidEmptyValueExeption.class, () -> stage.setNameStage(""));
            //assertNotNull(valid.getMessage());
         assertEquals("Название не может быть пустым",valid.getMessage());
     }
@@ -134,7 +133,7 @@ public class StageProjectTest {
         StageProject stage = new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                 13,10,2020,15,11,2020,50000);
         int newNumbStage = 1;
-        ValidOldValue valid = assertThrows(ValidOldValue.class, () ->  stage.setNumberStage(newNumbStage) );
+        ValidOldValueExeption valid = assertThrows(ValidOldValueExeption.class, () ->  stage.setNumberStage(newNumbStage) );
         assertEquals("Номер этапа: " + newNumbStage + " является текущим номером этапа", valid.getMessage());
     }
 
@@ -147,7 +146,7 @@ public class StageProjectTest {
         StageProject stage = new StageProject(1,"Дизайн-проект", Status.COMPLETED,
                 13,10,2020,15,11,2020,50000);
         int newNumbStage = -2;
-        ValidNegativeValue valid = assertThrows(ValidNegativeValue.class, () -> { stage.setNumberStage(newNumbStage); });
+        ValidNegativeValueExeption valid = assertThrows(ValidNegativeValueExeption.class, () -> { stage.setNumberStage(newNumbStage); });
         assertEquals("Номер этапа не может быть отрицательным", valid.getMessage());
     }
 
@@ -173,7 +172,7 @@ public class StageProjectTest {
         StageProject stage = new StageProject(1, "Дизайн-проект", Status.COMPLETED,
                     13, 10, 2020, 15, 11, 2020, 50000);
 
-        ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> { stage.setStatusStage(null); });
+        ValidEmptyValueExeption valid = assertThrows(ValidEmptyValueExeption.class, () -> { stage.setStatusStage(null); });
         assertEquals("Статус не может быть пустым", valid.getMessage());
     }
 

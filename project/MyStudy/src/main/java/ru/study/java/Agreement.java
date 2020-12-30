@@ -1,10 +1,8 @@
 package ru.study.java;
 
 
-import ru.study.java.Validate.ValidNegativeValue;
-import ru.study.java.Validate.ValidationException;
+import ru.study.java.validation.ValidNegativeValueExeption;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ public class Agreement{
     private int priceAgree = 0;
 
     public Agreement(String client, String contractor, int deadLineDays,
-                     int createdDay,int createdMonth,int createdYear) throws DateTimeException{
+                     int createdDay,int createdMonth,int createdYear){
         this.client = client;
         this.contractor = contractor;
         setDeadLineDays(deadLineDays);
@@ -37,22 +35,24 @@ public class Agreement{
     //Установка Колличества запланированных дней на договор
     public void setDeadLineDays(int deadLineDays){
         if (deadLineDays < 0) {
-            throw new ValidNegativeValue("Колличество запланированных дней не может быть отрицательным");
+            throw new ValidNegativeValueExeption("Колличество запланированных дней не может быть отрицательным");
         } else {
             this.deadLineDays = deadLineDays;
         }
     }
 
     //Установка даты создания договора
-    private void setCreatedDate(int createdDay, int createdMonth, int createdYear) throws DateTimeException {
+    private void setCreatedDate(int createdDay, int createdMonth, int createdYear) {
         this.dateCreatedAgree = LocalDate.of(createdYear,createdMonth,createdDay);
     }
 
     //добавление проекта под договор
     public void addProject(ConstructionProject project){
         this.listProjects.add(project);
+            this.priceAgree = sumPriceStageAll(listProjects);
     }
 
+    @Override
     public String toString(){
         return "№ договора: " + numbAgree + "\nКлиент: " + client +
                 "\nИсполнитель: " + contractor + "\nСроки договора(в днях): " + deadLineDays +
@@ -82,8 +82,6 @@ public class Agreement{
 
     //получаем стоимость проекта
     public int getPriceAgree() {
-        if(listProjects.size() > 0)
-            this.priceAgree = sumPriceStageAll(listProjects);
         return priceAgree;
     }
 

@@ -17,15 +17,7 @@ public enum Status {
         this.translation = translation;
     }
 
-    public static boolean contains (Status stat){
-        for (Status status : Status.values()){
-            if(status.equals(stat)){
-                return true;
-            }
-        }
-        return false;
-    }
-
+    @Override
     public String toString(){
         return translation;
     }

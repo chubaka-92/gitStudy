@@ -2,10 +2,7 @@ package ru.study.java;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ru.study.java.ConstructionProject;
-import ru.study.java.StageProject;
-import ru.study.java.Status;
-import ru.study.java.Validate.ValidEmptyValue;
+import ru.study.java.validation.ValidEmptyValueExeption;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -112,7 +109,7 @@ public class ConstructionProjectTest {
     public void editNameProjectExeptionTest(){
         ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
-        ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> proj.editNameProject(""));
+        ValidEmptyValueExeption valid = assertThrows(ValidEmptyValueExeption.class, () -> proj.editNameProject(""));
         assertEquals("Название проекта не может быть пустым",valid.getMessage());
     }
 
@@ -137,7 +134,7 @@ public class ConstructionProjectTest {
     public void editStatusProjectExeptionTest() {
         ConstructionProject proj = new ConstructionProject("Ремонт квартиры", Status.IN_PROGRESS);
 
-        ValidEmptyValue valid = assertThrows(ValidEmptyValue.class, () -> proj.editStatusProject(null));
+        ValidEmptyValueExeption valid = assertThrows(ValidEmptyValueExeption.class, () -> proj.editStatusProject(null));
         assertEquals("Статус проекта не может быть пустым",valid.getMessage());
     }
 

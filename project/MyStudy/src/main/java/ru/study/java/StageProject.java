@@ -1,11 +1,9 @@
 package ru.study.java;
 
-import ru.study.java.Validate.ValidEmptyValue;
-import ru.study.java.Validate.ValidNegativeValue;
-import ru.study.java.Validate.ValidOldValue;
-import ru.study.java.Validate.ValidationException;
+import ru.study.java.validation.ValidEmptyValueExeption;
+import ru.study.java.validation.ValidNegativeValueExeption;
+import ru.study.java.validation.ValidOldValueExeption;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class StageProject{
@@ -19,7 +17,7 @@ public class StageProject{
 
     public StageProject (int numbStage, String name, Status status,
                          int startDay,int starMonth,int starYear,int endDay,int endMonth,int endYear,
-                         int priceStage) throws DateTimeException {
+                         int priceStage) {
         setNumberStage(numbStage);
         setNameStage(name);
         setStatusStage(status);
@@ -54,12 +52,12 @@ public class StageProject{
     }
 
     //установка Даты начала Этапа
-    public void setStartDate(int startDay,int starMonth,int starYear) throws DateTimeException{
+    public void setStartDate(int startDay,int starMonth,int starYear) {
         this.startDate = LocalDate.of(starYear,starMonth,startDay);
     }
 
     //установка Даты завершения Этапа
-    public void setEndDate(int endDay,int endMonth,int endYear) throws DateTimeException{
+    public void setEndDate(int endDay,int endMonth,int endYear) {
         this.endDate = LocalDate.of(endYear,endMonth,endDay);
     }
 
@@ -78,7 +76,7 @@ public class StageProject{
         if(!(newName.equals(""))){
             this.name = newName;
         } else {
-            throw new ValidEmptyValue("Название не может быть пустым");
+            throw new ValidEmptyValueExeption("Название не может быть пустым");
         }
     }
 
@@ -87,7 +85,7 @@ public class StageProject{
         if(newStatus != null){
             this.status = newStatus;
         } else {
-            throw new ValidEmptyValue("Статус не может быть пустым");
+            throw new ValidEmptyValueExeption("Статус не может быть пустым");
         }
     }
 
@@ -95,10 +93,10 @@ public class StageProject{
     public void setNumberStage(int numberStage){
         int oldNumbStage = this.numberStage;
         if (oldNumbStage == numberStage) {
-            throw new ValidOldValue("Номер этапа: " + numberStage + " является текущим номером этапа");
+            throw new ValidOldValueExeption("Номер этапа: " + numberStage + " является текущим номером этапа");
         }
         if (numberStage < 0) {
-            throw new ValidNegativeValue("Номер этапа не может быть отрицательным");
+            throw new ValidNegativeValueExeption("Номер этапа не может быть отрицательным");
         } else {
             this.numberStage = numberStage;
         }
