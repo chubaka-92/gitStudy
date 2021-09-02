@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0ee3e02d-e6b9-404c-bfe4-e613962c5a67" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/MyFunctionalInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/MyQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/MyStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/MySynchroTreadTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/MyTreadTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/Test025.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/Test029.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/Test030.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestDeadLock028.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestPattern022.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestSemaphore027.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestSynchro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestSynchroMultiObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestThreadPool021.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestWaitingNotify023.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/sandbox/multithreading/TestWaitingNotify024.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/tinkoff/study/GoLake.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/tinkoff/study/WorkString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/Agreement.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/MyStudy/src/main/java/ru/study/java/Agreement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/classes/ru/study/java/Agreement.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/MyStudy/target/classes/ru/study/java/Agreement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/surefire-reports/TEST-TestAgreement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/surefire-reports/TEST-TestInfoShort.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/surefire-reports/TestAgreement.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/surefire-reports/TestInfoShort.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/MyStudy/target/test-classes/ru/study/java/AgreementTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/MyStudy/target/test-classes/ru/study/java/AgreementTest.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1xV7UvXnRwtNkLcOPhYXLCs5OYf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0ee3e02d-e6b9-404c-bfe4-e613962c5a67" name="Default Changelist" comment="" />
+      <created>1630428420757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1630428420757</updated>
+    </task>
+    <servers />
+  </component>
+</project>

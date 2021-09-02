@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Agreement{
-    private int numbAgree;
-    private static int nextNumberAgr= 1;
+    private long numbAgree;
+    private static long nextNumberAgr= 1;
     private String client;
     private String contractor;
     private int deadLineDays = 0;
@@ -62,7 +62,7 @@ public class Agreement{
     //Колличество проектов под договором
     public int countProjects(){ return listProjects.size(); }
 
-    public int getNumbAgree() {
+    public long getNumbAgree() {
         return numbAgree;
     }
 
